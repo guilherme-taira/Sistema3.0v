@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Calculadora Mercado Livre</title>
+		<link rel="stylesheet" href="index.css">
+		<script src="jquery.js"></script>
+		<script src="rastreio.js"></script>
+		<!-- BOOTSTRAP CSS CDN -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	</head>
+</html></head><body>
+
+<!---  PARTE DO CABECAÇO INICIO -->
+
+
+<div id="navbar" class="row">
+	<div class="col">
+		<nav
+			class="navbar">
+			<!-- Navbar content -->
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">MELI MÁXIMO
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link active" id="btncalculadora" aria-current="page" href="#">Calculadora</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="btnrastreador" href="#">Rastreador de Produtos</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+</div>
+
+<!---  PARTE DO CABECAÇO FINAL -->
+
+
+<!---  PARTE DO CORPO INICIO -->
+
+<div id="calculate-page" class="content">
+	<h1>Calculadora</h1>
+
+	<div class="container-fluid px-1 mx-auto">
+		<div class="row d-flex justify-content-center">
+			<div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+				<div class="card">
+					<form
+						class="form-card" onsubmit="event.preventDefault()">
+						<!-- Msg frete grátis -->
+						<p class="alert alert-warning d-none msg-fretegratis">Neste valor o produto ficará com o frete grátis!</p>
+
+						<div class="row justify-content-between text-left">
+							<div class="form-group col-sm-12 flex-column d-flex">
+								<label class="form-control-label px-3">Titúlo do Produto<span class="text-danger"></span>
+								</label>
+								<input type="text" id="form-name" name="form-name" placeholder="Enter your first name">
+							</div>
+						</div>
+						<div class="row justify-content-between text-left">
+							<div class="form-group col-sm-6 flex-column d-flex">
+								<label class="form-control-label px-3">Preço Atual<span class="text-danger">
+										*</span>
+								</label>
+								<input type="text" id="form-precoatual" name="form-precoatual" placeholder="">
+							</div>
+							<div class="form-group col-sm-6 flex-column d-flex">
+								<label class="form-control-label px-3">Preço Desejado<span class="text-danger">
+										*</span>
+								</label>
+								<input type="text" id="form-precodesejado" name="form-precodesejado" placeholder="">
+							</div>
+						</div>
+						<div class="row justify-content-between text-left">
+							<div class="form-group col-sm-6 flex-column d-flex">
+								<label class="form-control-label px-3">Tipo de Anúncio<span class="text-danger">
+										*</span>
+								</label>
+								<select class="form-select" id="tipoAnuncio" aria-label="Default select example">
+									<option value="" selected class="form-control-label px-3">...</option>
+									<option value="gold_special">Clássico</option>
+									<option value="gold_pro">Premium</option>
+								</select>
+							</div>
+
+							<div class="form-group col-sm-6 flex-column d-flex">
+								<label class="form-control-label px-3">Frete<span class="text-danger">
+										*</span>
+								</label>
+								<input type="text" id="form-frete" name="form-frete" placeholder="">
+							</div>
+
+						</div>
+
+						<div class="row justify-content-between text-left">
+							<div class="form-group col-12 flex-column d-flex mt-2">
+								<label class="form-control-label px-3">Resultado<span class="text-danger"></span>
+								</label>
+								<input type="text" id="resultado" name="resultado" placeholder="">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!---  PARTE DO CABECAÇO FINAL -->
+
+
+
+<div id="rastreio-page" class="content" style="display: none;">
+	<h1>Rastreio de Produtos</h1>
+
+	<div class="container-fluid px-1 mx-auto">
+		<div class="row d-flex justify-content-center">
+			<div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+				<div class="card">
+					<div>
+						<div id="msg_rastreio" class="d-none"></div>
+						<p>Todos os Produtos tem o período Máximo de 7 dias.</p>
+						<div class="col-6">
+							<button class="btn btn-success mt-2" id="abrirRastreado">Acompanhar Produto
+								<i class="bi bi-search-heart"></i>
+							</button>
+						</div>
+
+						<div class="col-12">
+							<table class="tg">
+								<thead>
+									<tr id="contentReturnApi"></tr>
+								</thead>
+							</tr>
+						</thead>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></body></div><!-- BOOTSTRAP JAVASCRIPT CDN --><script src="js/bootstrap.js"></script><script src="script.js"></script></body></body></html></body>
